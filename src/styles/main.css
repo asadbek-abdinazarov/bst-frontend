@@ -1,0 +1,34 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#app {
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* Element Plus theme customization - matches Tailwind primary color system */
+:root {
+  --el-color-primary: #2563eb; /* primary-600 - DEFAULT */
+  --el-color-primary-light-3: #60a5fa; /* primary-400 */
+  --el-color-primary-light-5: #93c5fd; /* primary-300 */
+  --el-color-primary-light-7: #bfdbfe; /* primary-200 */
+  --el-color-primary-light-8: #dbeafe; /* primary-100 */
+  --el-color-primary-light-9: #eff6ff; /* primary-50 */
+  --el-color-primary-dark-2: #1d4ed8; /* primary-700 */
+}

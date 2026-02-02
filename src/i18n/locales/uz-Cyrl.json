@@ -1,0 +1,85 @@
+{
+  "login": {
+    "title": "Хуш келибсиз",
+    "subtitle": "LMS ҳисобингизга киринг",
+    "email": "Email манзил",
+    "password": "Парол",
+    "rememberMe": "Мени эслаб қол",
+    "forgotPassword": "Паролни унутдингизми?",
+    "signIn": "Кириш",
+    "signingIn": "Кирилмоқда...",
+    "validation": {
+      "emailRequired": "Илтимос, email манзилингизни киритинг",
+      "emailInvalid": "Илтимос, тўғри email манзил киритинг",
+      "passwordRequired": "Илтимос, паролингизни киритинг",
+      "passwordMin": "Парол камида 6 та белгидан иборат бўлиши керак"
+    },
+    "success": "Муваффақиятли кирилди!",
+    "error": "Кириш муваффақиятсиз. Илтимос, қайта уриниб кўринг."
+  },
+  "dashboard": {
+    "welcome": "Хуш келибсиз",
+    "greeting": "Салом",
+    "logout": "Чиқиш",
+    "stats": {
+      "totalCourses": "Жами фанлар",
+      "activeStudents": "Фаол талабалар",
+      "assignments": "Топшириқлар",
+      "attendance": "Давомот"
+    },
+    "recentActivity": "Сўнги фаолият",
+    "quickActions": "Тезкор амаллар",
+    "viewAll": "Барчасини кўриш",
+    "noActivity": "Ҳозирча фаолият йўқ"
+  },
+  "profile": {
+    "title": "Фойдаланувчи профили",
+    "editTitle": "Профилини таҳрирлаш",
+    "firstName": "Исм",
+    "lastName": "Фамилия",
+    "email": "Email",
+    "phone": "Телефон",
+    "passport": "Паспорт",
+    "pinfl": "ПИНФЛ",
+    "address": "Манзил",
+    "role": "Рол",
+    "id": "ID",
+    "createdAt": "Рўйхатдан ўтган вақт",
+    "updatedAt": "Охирги таҳрирлаш",
+    "logout": "Чиқиш",
+    "close": "Ёпиш",
+    "edit": "Таҳрирлаш",
+    "cancel": "Бекор қилиш",
+    "save": "Сақлаш",
+    "myProfile": "Менинг профилим",
+    "editProfile": "Профилини таҳрирлаш",
+    "editMode": "Таҳрирлаш режими",
+    "personalDetails": "Шахсий маълумотлар",
+    "contactInfo": "Контакт ва манзил",
+    "joined": "Рўйхатдан ўтган",
+    "legalDocs": "Ҳуқуқий ҳужжатлар",
+    "saveChanges": "Ўзгаришларни сақлаш",
+    "noAddress": "Манзил кўрсатилмаган",
+    "emptyValue": "—",
+    "placeholders": {
+      "passport": "AA 1234567",
+      "pinfl": "ЖШШИР (14 рақам)",
+      "address": "Манзилни киритинг..."
+    },
+    "validation": {
+      "firstNameRequired": "Исм мажбурий",
+      "lastNameRequired": "Фамилия мажбурий",
+      "pinflLength": "ПИНФЛ 14 та рақамдан иборат бўлиши керак",
+      "passportRequired": "Паспорт серияси мажбурий",
+      "passportFormat": "Паспорт серияси AA 1234567 форматда бўлиши керак"
+    },
+    "messages": {
+      "saved": "Сақланди",
+      "error": "Хатолик юз берди",
+      "copiedPassport": "Паспорт нусхаланди",
+      "copiedPinfl": "ПИНФЛ нусхаланди",
+      "copyError": "Нусхалаб бўлмади"
+    },
+    "copy": "Нусхалаш"
+  }
+}

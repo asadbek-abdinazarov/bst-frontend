@@ -1,0 +1,85 @@
+{
+  "login": {
+    "title": "Xush kelibsiz",
+    "subtitle": "LMS hisobingizga kiring",
+    "email": "Email manzil",
+    "password": "Parol",
+    "rememberMe": "Meni eslab qol",
+    "forgotPassword": "Parolni unutdingizmi?",
+    "signIn": "Kirish",
+    "signingIn": "Kirilmoqda...",
+    "validation": {
+      "emailRequired": "Iltimos, email manzilingizni kiriting",
+      "emailInvalid": "Iltimos, to'g'ri email manzil kiriting",
+      "passwordRequired": "Iltimos, parolingizni kiriting",
+      "passwordMin": "Parol kamida 6 ta belgidan iborat bo'lishi kerak"
+    },
+    "success": "Muvaffaqiyatli kirildi!",
+    "error": "Kirish muvaffaqiyatsiz. Iltimos, qayta urinib ko'ring."
+  },
+  "dashboard": {
+    "welcome": "Xush kelibsiz",
+    "greeting": "Assalomu alaykum",
+    "logout": "Chiqish",
+    "stats": {
+      "totalCourses": "Jami fanlar",
+      "activeStudents": "Faol talabalar",
+      "assignments": "Topshiriqlar",
+      "attendance": "Davomat"
+    },
+    "recentActivity": "So'nggi faoliyat",
+    "quickActions": "Tezkor amallar",
+    "viewAll": "Barchasini ko'rish",
+    "noActivity": "Hozircha faoliyat yo'q"
+  },
+  "profile": {
+    "title": "Foydalanuvchi profili",
+    "editTitle": "Profilni tahrirlash",
+    "firstName": "Ism",
+    "lastName": "Familiya",
+    "email": "Email",
+    "phone": "Telefon",
+    "passport": "Pasport",
+    "pinfl": "PINFL",
+    "address": "Manzil",
+    "role": "Rol",
+    "id": "ID",
+    "createdAt": "Ro'yxatdan o'tgan vaqt",
+    "updatedAt": "Oxirgi tahrirlash",
+    "logout": "Chiqish",
+    "close": "Yopish",
+    "edit": "Tahrirlash",
+    "cancel": "Bekor qilish",
+    "save": "Saqlash",
+    "myProfile": "Mening profilim",
+    "editProfile": "Profilni tahrirlash",
+    "editMode": "Tahrirlash rejimi",
+    "personalDetails": "Shaxsiy ma'lumotlar",
+    "contactInfo": "Kontakt va manzil",
+    "joined": "Ro'yxatdan o'tgan",
+    "legalDocs": "Huquqiy hujjatlar",
+    "saveChanges": "O'zgarishlarni saqlash",
+    "noAddress": "Manzil ko'rsatilmagan",
+    "emptyValue": "—",
+    "placeholders": {
+      "passport": "AA 1234567",
+      "pinfl": "JSHSHIR (14 raqam)",
+      "address": "Manzilni kiriting..."
+    },
+    "validation": {
+      "firstNameRequired": "Ism majburiy",
+      "lastNameRequired": "Familiya majburiy",
+      "pinflLength": "PINFL 14 ta raqamdan iborat bo'lishi kerak",
+      "passportRequired": "Pasport seriyasi majburiy",
+      "passportFormat": "Pasport seriyasi AA 1234567 formatida bo'lishi kerak"
+    },
+    "messages": {
+      "saved": "Saqlandi",
+      "error": "Xatolik yuz berdi",
+      "copiedPassport": "Pasport nusxalandi",
+      "copiedPinfl": "PINFL nusxalandi",
+      "copyError": "Nusxalab bo'lmadi"
+    },
+    "copy": "Nusxalash"
+  }
+}
