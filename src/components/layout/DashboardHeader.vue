@@ -7,6 +7,7 @@
         </h1>
         <p class="greeting-subtitle">{{ $t('dashboard.welcome') }}</p>
       </div>
+      <!-- Moved to sidebar footer
       <div class="header-actions">
         <LanguageSwitcher />
         <div class="user-profile-section">
@@ -26,6 +27,7 @@
           </div>
         </div>
       </div>
+      -->
     </div>
   </div>
 
@@ -36,25 +38,13 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
 import { useAuth } from '@/composables/useAuth'
-import LanguageSwitcher from '@/components/common/LanguageSwitcher.vue'
 import UserProfileDialog from './UserProfileDialog.vue'
 
 const { user } = useAuth()
 
 const isProfileDialogVisible = ref(false)
-
-const userInitials = computed(() => {
-  if (!user.value?.firstName) return '?'
-  const first = user.value.firstName[0] || ''
-  const last = user.value.lastName?.[0] || ''
-  return (first + last).toUpperCase()
-})
-
-const openProfileDialog = () => {
-  isProfileDialogVisible.value = true
-}
 </script>
 
 <style scoped lang="scss">

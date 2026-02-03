@@ -61,24 +61,40 @@
     "saveChanges": "O'zgarishlarni saqlash",
     "noAddress": "Manzil ko'rsatilmagan",
     "emptyValue": "—",
+    "profileInfo": "Profil ma'lumotlari",
+    "changePassword": "Parolni o'zgartirish",
+    "currentPassword": "Joriy parol",
+    "newPassword": "Yangi parol",
+    "confirmPassword": "Parolni tasdiqlash",
+    "updatePassword": "Parolni yangilash",
     "placeholders": {
       "passport": "AA 1234567",
       "pinfl": "JSHSHIR (14 raqam)",
-      "address": "Manzilni kiriting..."
+      "address": "Manzilni kiriting...",
+      "currentPassword": "Joriy parolingizni kiriting",
+      "newPassword": "Yangi parolni kiriting",
+      "confirmPassword": "Yangi parolni qayta kiriting"
     },
     "validation": {
       "firstNameRequired": "Ism majburiy",
       "lastNameRequired": "Familiya majburiy",
       "pinflLength": "PINFL 14 ta raqamdan iborat bo'lishi kerak",
       "passportRequired": "Pasport seriyasi majburiy",
-      "passportFormat": "Pasport seriyasi AA 1234567 formatida bo'lishi kerak"
+      "passportFormat": "Pasport seriyasi AA 1234567 formatida bo'lishi kerak",
+      "currentPasswordRequired": "Joriy parolni kiriting",
+      "newPasswordRequired": "Yangi parolni kiriting",
+      "confirmPasswordRequired": "Parolni tasdiqlang",
+      "passwordMin": "Parol kamida 6 ta belgidan iborat bo'lishi kerak",
+      "passwordsMismatch": "Parollar mos kelmayapti"
     },
     "messages": {
       "saved": "Saqlandi",
       "error": "Xatolik yuz berdi",
       "copiedPassport": "Pasport nusxalandi",
       "copiedPinfl": "PINFL nusxalandi",
-      "copyError": "Nusxalab bo'lmadi"
+      "copyError": "Nusxalab bo'lmadi",
+      "passwordChanged": "Parol muvaffaqiyatli o'zgartirildi",
+      "passwordChangeError": "Parolni o'zgartirishda xatolik yuz berdi"
     },
     "copy": "Nusxalash"
   }

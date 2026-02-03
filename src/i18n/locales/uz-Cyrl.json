@@ -61,24 +61,40 @@
     "saveChanges": "Ўзгаришларни сақлаш",
     "noAddress": "Манзил кўрсатилмаган",
     "emptyValue": "—",
+    "profileInfo": "Профил маълумотлари",
+    "changePassword": "Паролни ўзгартириш",
+    "currentPassword": "Жорий парол",
+    "newPassword": "Янги парол",
+    "confirmPassword": "Паролни тасдиқлаш",
+    "updatePassword": "Паролни янгилаш",
     "placeholders": {
       "passport": "AA 1234567",
       "pinfl": "ЖШШИР (14 рақам)",
-      "address": "Манзилни киритинг..."
+      "address": "Манзилни киритинг...",
+      "currentPassword": "Жорий паролингизни киритинг",
+      "newPassword": "Янги паролни киритинг",
+      "confirmPassword": "Янги паролни қайта киритинг"
     },
     "validation": {
       "firstNameRequired": "Исм мажбурий",
       "lastNameRequired": "Фамилия мажбурий",
       "pinflLength": "ПИНФЛ 14 та рақамдан иборат бўлиши керак",
       "passportRequired": "Паспорт серияси мажбурий",
-      "passportFormat": "Паспорт серияси AA 1234567 форматда бўлиши керак"
+      "passportFormat": "Паспорт серияси AA 1234567 форматда бўлиши керак",
+      "currentPasswordRequired": "Жорий паролни киритинг",
+      "newPasswordRequired": "Янги паролни киритинг",
+      "confirmPasswordRequired": "Паролни тасдиқланг",
+      "passwordMin": "Парол камида 6 та белгидан иборат бўлиши керак",
+      "passwordsMismatch": "Пароллар мос келмаяпти"
     },
     "messages": {
       "saved": "Сақланди",
       "error": "Хатолик юз берди",
       "copiedPassport": "Паспорт нусхаланди",
       "copiedPinfl": "ПИНФЛ нусхаланди",
-      "copyError": "Нусхалаб бўлмади"
+      "copyError": "Нусхалаб бўлмади",
+      "passwordChanged": "Парол муваффақиятли ўзгартирилди",
+      "passwordChangeError": "Паролни ўзгартиришда хатолик юз берди"
     },
     "copy": "Нусхалаш"
   }
