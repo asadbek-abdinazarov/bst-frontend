@@ -14,11 +14,22 @@ const routes: RouteRecordRaw[] = [
   },
   {
     path: '/',
-    name: 'Home',
     component: () => import('@/views/Home.vue'),
     meta: {
       requiresAuth: true,
     },
+    children: [
+      {
+        path: '',
+        name: 'Dashboard',
+        component: () => import('@/views/Dashboard.vue'),
+      },
+      {
+        path: 'students',
+        name: 'Students',
+        component: () => import('@/views/Students.vue'), // Will create this next
+      },
+    ],
   },
   {
     path: '/:pathMatch(.*)*',
@@ -35,7 +46,7 @@ const router = createRouter({
 router.beforeEach((to, _from, next) => {
   try {
     const authStore = useAuthStore()
-    
+
     // Initialize auth state on first load
     if (!authStore.user && (localStorage.getItem('token') || sessionStorage.getItem('token'))) {
       authStore.initializeAuth()

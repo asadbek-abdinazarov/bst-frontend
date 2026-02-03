@@ -44,13 +44,13 @@ apiClient.interceptors.response.use(
 export const api = {
   get: <T = unknown>(url: string, config?: AxiosRequestConfig) =>
     apiClient.get<ApiResponse<T>>(url, config).then((res) => res.data),
-  
+
   post: <T = unknown>(url: string, data?: unknown, config?: AxiosRequestConfig) =>
     apiClient.post<ApiResponse<T>>(url, data, config).then((res) => res.data),
-  
+
   put: <T = unknown>(url: string, data?: unknown, config?: AxiosRequestConfig) =>
     apiClient.put<ApiResponse<T>>(url, data, config).then((res) => res.data),
-  
+
   delete: <T = unknown>(url: string, config?: AxiosRequestConfig) =>
     apiClient.delete<ApiResponse<T>>(url, config).then((res) => res.data),
 }
@@ -65,8 +65,10 @@ export const authApi = {
           user: {
             id: '1',
             email: credentials.email,
-            name: 'User',
-            role: 'student',
+            firstName: 'Admin',
+            lastName: 'User',
+            role: 'admin',
+            createdAt: new Date().toISOString(),
           },
           token: 'mock-token-' + Date.now(),
         })

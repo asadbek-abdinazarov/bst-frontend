@@ -7,27 +7,6 @@
         </h1>
         <p class="greeting-subtitle">{{ $t('dashboard.welcome') }}</p>
       </div>
-      <!-- Moved to sidebar footer
-      <div class="header-actions">
-        <LanguageSwitcher />
-        <div class="user-profile-section">
-          <div
-            class="user-avatar clickable"
-            @click="openProfileDialog"
-          >
-            <img
-              v-if="user?.avatar"
-              :src="user.avatar"
-              :alt="user.firstName + ' ' + user.lastName"
-              class="avatar-image"
-            />
-            <span v-else class="avatar-placeholder">
-              {{ userInitials }}
-            </span>
-          </div>
-        </div>
-      </div>
-      -->
     </div>
   </div>
 

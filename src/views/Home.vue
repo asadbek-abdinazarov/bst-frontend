@@ -31,9 +31,11 @@
         </div>
         <nav class="sidebar-nav">
           <button 
-            class="sidebar-item sidebar-item-active" 
+            class="sidebar-item" 
+            :class="{ 'sidebar-item-active': route.path === '/' }"
             type="button"
             :title="isSidebarCollapsed ? 'Dashboard' : ''"
+            @click="navigateTo('/')"
           >
             <el-icon><Odometer /></el-icon>
             <span v-if="!isSidebarCollapsed">Dashboard</span>
@@ -48,8 +50,10 @@
           </button>
           <button 
             class="sidebar-item" 
+            :class="{ 'sidebar-item-active': route.path === '/students' }"
             type="button"
             :title="isSidebarCollapsed ? 'Talabalar' : ''"
+            @click="navigateTo('/students')"
           >
             <el-icon><User /></el-icon>
             <span v-if="!isSidebarCollapsed">Talabalar</span>
@@ -90,15 +94,63 @@
         
         <!-- Sidebar Footer -->
         <div class="sidebar-footer">
-          <button 
-            class="sidebar-footer-item" 
-            type="button"
-            :title="isSidebarCollapsed ? 'Language' : ''"
-            @click="showLanguageSwitcher = !showLanguageSwitcher"
+          <!-- Language Switcher -->
+          <el-popover
+            v-model:visible="showLanguageSwitcher"
+            placement="right"
+            :width="200"
+            trigger="click"
+            popper-class="language-popover"
+            :show-arrow="false"
+            :offset="10"
           >
-            <el-icon><Tools /></el-icon>
-            <span v-if="!isSidebarCollapsed">{{ currentLanguage }}</span>
-          </button>
+            <template #reference>
+              <button 
+                class="sidebar-footer-item" 
+                type="button"
+                :title="isSidebarCollapsed ? 'Language' : ''"
+              >
+                <div class="footer-icon-wrapper">
+                  <el-icon><Tools /></el-icon>
+                </div>
+                <div v-if="!isSidebarCollapsed" class="footer-item-content">
+                  <span class="footer-item-label">Language</span>
+                  <span class="footer-item-value">{{ currentLanguage }}</span>
+                </div>
+                <el-icon v-if="!isSidebarCollapsed" class="footer-chevron"><ArrowRight /></el-icon>
+              </button>
+            </template>
+            
+            <div class="language-options">
+              <button 
+                class="language-option"
+                :class="{ active: locale === 'uz-Latn' }"
+                @click="locale = 'uz-Latn'; showLanguageSwitcher = false"
+              >
+                <span class="lang-flag">🇺🇿</span>
+                <span class="lang-name">O'zbekcha (Lotin)</span>
+                <el-icon v-if="locale === 'uz-Latn'" class="check-icon"><Check /></el-icon>
+              </button>
+              <button 
+                class="language-option"
+                :class="{ active: locale === 'uz-Cyrl' }"
+                @click="locale = 'uz-Cyrl'; showLanguageSwitcher = false"
+              >
+                <span class="lang-flag">🇺🇿</span>
+                <span class="lang-name">Ўзбекча (Кирилл)</span>
+                <el-icon v-if="locale === 'uz-Cyrl'" class="check-icon"><Check /></el-icon>
+              </button>
+              <button 
+                class="language-option"
+                :class="{ active: locale === 'ru' }"
+                @click="locale = 'ru'; showLanguageSwitcher = false"
+              >
+                <span class="lang-flag">🇷🇺</span>
+                <span class="lang-name">Русский</span>
+                <el-icon v-if="locale === 'ru'" class="check-icon"><Check /></el-icon>
+              </button>
+            </div>
+          </el-popover>
           
           <button 
             class="sidebar-footer-item" 
@@ -117,9 +169,13 @@
                 {{ userInitials }}
               </span>
             </div>
-            <span v-if="!isSidebarCollapsed" class="user-name">
-              {{ user?.firstName || 'User' }}
-            </span>
+            <div v-if="!isSidebarCollapsed" class="footer-item-content">
+              <span class="user-name">
+                {{ user?.firstName || 'User' }}
+              </span>
+              <span class="user-role">Admin</span>
+            </div>
+            <el-icon v-if="!isSidebarCollapsed" class="footer-chevron"><ArrowRight /></el-icon>
           </button>
         </div>
       </aside>
@@ -142,110 +198,7 @@
 
         <DashboardHeader />
 
-        <div class="dashboard-content">
-          <!-- Stats Cards Section -->
-          <div class="stats-grid">
-            <StatCard
-              :icon="Reading"
-              :value="12"
-              :label="$t('dashboard.stats.totalCourses')"
-              :trend="5"
-              icon-color="#3b82f6"
-              icon-bg-color="#eff6ff"
-            />
-            <StatCard
-              :icon="User"
-              :value="245"
-              :label="$t('dashboard.stats.activeStudents')"
-              :trend="12"
-              icon-color="#22c55e"
-              icon-bg-color="#f0fdf4"
-            />
-            <StatCard
-              :icon="Document"
-              :value="38"
-              :label="$t('dashboard.stats.assignments')"
-              :trend="-3"
-              icon-color="#f59e0b"
-              icon-bg-color="#fffbeb"
-            />
-            <StatCard
-              :icon="Calendar"
-              :value="94"
-              :label="$t('dashboard.stats.attendance')"
-              :trend="2"
-              icon-color="#8b5cf6"
-              icon-bg-color="#faf5ff"
-            />
-          </div>
-
-          <!-- Main Content Grid -->
-          <div class="content-grid">
-            <!-- Recent Activity Section -->
-            <div class="activity-card">
-              <div class="card-header">
-                <h2 class="card-title">{{ $t('dashboard.recentActivity') }}</h2>
-                <el-button text type="primary" size="small">
-                  {{ $t('dashboard.viewAll') }}
-                </el-button>
-              </div>
-              <div class="activity-list">
-                <div v-for="activity in activities" :key="activity.id" class="activity-item">
-                  <div class="activity-icon" :style="{ backgroundColor: activity.iconBg }">
-                    <el-icon :color="activity.iconColor">
-                      <component :is="activity.icon" />
-                    </el-icon>
-                  </div>
-                  <div class="activity-content">
-                    <div class="activity-title">{{ activity.title }}</div>
-                    <div class="activity-time">{{ activity.time }}</div>
-                  </div>
-                </div>
-                <div v-if="activities.length === 0" class="no-activity">
-                  {{ $t('dashboard.noActivity') }}
-                </div>
-              </div>
-            </div>
-
-            <!-- Quick Actions Section -->
-            <div class="actions-card">
-              <div class="card-header">
-                <h2 class="card-title">{{ $t('dashboard.quickActions') }}</h2>
-              </div>
-              <div class="actions-grid">
-                <el-button
-                  :icon="Plus"
-                  type="primary"
-                  class="action-button"
-                  size="large"
-                >
-                  Yangi kurs
-                </el-button>
-                <el-button
-                  :icon="User"
-                  class="action-button"
-                  size="large"
-                >
-                  Talabalar
-                </el-button>
-                <el-button
-                  :icon="Document"
-                  class="action-button"
-                  size="large"
-                >
-                  Topshiriqlar
-                </el-button>
-                <el-button
-                  :icon="Calendar"
-                  class="action-button"
-                  size="large"
-                >
-                  Davomat
-                </el-button>
-              </div>
-            </div>
-          </div>
-        </div>
+        <router-view />
       </div>
     </div>
     
@@ -254,41 +207,6 @@
       v-model="isProfileDialogVisible"
       :user="user"
     />
-    
-    <!-- Language Switcher Dropdown -->
-    <el-popover
-      v-model:visible="showLanguageSwitcher"
-      placement="top"
-      :width="150"
-      trigger="click"
-    >
-      <template #reference>
-        <span></span>
-      </template>
-      <div class="language-options">
-        <button 
-          class="language-option"
-          :class="{ active: locale === 'uz-Latn' }"
-          @click="locale = 'uz-Latn'; showLanguageSwitcher = false"
-        >
-          O'zbekcha (Lotin)
-        </button>
-        <button 
-          class="language-option"
-          :class="{ active: locale === 'uz-Cyrl' }"
-          @click="locale = 'uz-Cyrl'; showLanguageSwitcher = false"
-        >
-          Ўзбекча (Кирилл)
-        </button>
-        <button 
-          class="language-option"
-          :class="{ active: locale === 'ru' }"
-          @click="locale = 'ru'; showLanguageSwitcher = false"
-        >
-          Русский
-        </button>
-      </div>
-    </el-popover>
   </div>
 </template>
 
@@ -300,21 +218,24 @@ import {
   User,
   Document,
   Calendar,
-  Plus,
   Menu,
   Odometer,
   Avatar,
   DArrowLeft,
   DArrowRight,
   Tools,
+  ArrowRight,
+  Check,
 } from '@element-plus/icons-vue'
 import DashboardHeader from '@/components/layout/DashboardHeader.vue'
-import StatCard from '@/components/common/StatCard.vue'
 import UserProfileDialog from '@/components/layout/UserProfileDialog.vue'
 import { useAuth } from '@/composables/useAuth'
+import { useRouter, useRoute } from 'vue-router'
 
 const { locale } = useI18n()
 const { user } = useAuth()
+const router = useRouter()
+const route = useRoute()
 
 const isSidebarCollapsed = ref(false)
 const isSidebarMobileOpen = ref(false)
@@ -337,33 +258,12 @@ const currentLanguage = computed(() => {
   return langMap[locale.value] || 'UZ'
 })
 
-// Mock activities data
-const activities = ref([
-  {
-    id: 1,
-    title: 'Yangi topshiriq qo\'shildi',
-    time: '2 soat oldin',
-    icon: Document,
-    iconColor: '#3b82f6',
-    iconBg: '#eff6ff',
-  },
-  {
-    id: 2,
-    title: '5 ta yangi talaba ro\'yxatdan o\'tdi',
-    time: '5 soat oldin',
-    icon: User,
-    iconColor: '#22c55e',
-    iconBg: '#f0fdf4',
-  },
-  {
-    id: 3,
-    title: 'Davomat yangilandi',
-    time: '1 kun oldin',
-    icon: Calendar,
-    iconColor: '#8b5cf6',
-    iconBg: '#faf5ff',
-  },
-])
+const navigateTo = (route: string) => {
+  router.push(route)
+  if (window.innerWidth < 1024) {
+    isSidebarMobileOpen.value = false
+  }
+}
 </script>
 
 <style scoped lang="scss">
@@ -380,6 +280,9 @@ const activities = ref([
 .dashboard-main {
   flex: 1;
   min-width: 0;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden; // Prevent horizontal scroll
 }
 
 .sidebar-toggle-mobile {
@@ -580,38 +483,71 @@ const activities = ref([
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  padding: 0.875rem 1rem;
-  border-radius: 10px;
-  border: 1px solid #e5e7eb;
-  background: white;
+  padding: 0.75rem 0.5rem;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
   color: #374151;
   font-size: 0.875rem;
   font-weight: 500;
   cursor: pointer;
   text-align: left;
-  white-space: nowrap;
+  width: 100%;
   transition: all 0.2s ease;
+  margin-top: 0.25rem;
 
   &:hover {
-    background: #f9fafb;
-    border-color: #d1d5db;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    background: #f3f4f6;
   }
+}
+
+.footer-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  color: #6b7280;
   
   el-icon {
-    flex-shrink: 0;
-    font-size: 1.25rem;
-    color: #6b7280;
+    font-size: 1.5rem;
   }
-  
-  .user-avatar-small {
-    margin: 0;
-  }
-  
-  .user-name {
-    font-weight: 500;
-    color: #111827;
-  }
+}
+
+.footer-item-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  line-height: 1.3;
+}
+
+.footer-item-label {
+  font-size: 0.75rem;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.footer-item-value {
+  font-size: 0.875rem;
+  color: #111827;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.user-role {
+  font-size: 0.75rem;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.footer-chevron {
+  font-size: 1rem;
+  color: #9ca3af;
+  margin-left: auto;
 }
 
 .user-avatar-small {
@@ -684,142 +620,5 @@ const activities = ref([
   }
 }
 
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
-  margin-bottom: 2rem;
 
-  @media (max-width: 640px) {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-}
-
-.content-grid {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 1.5rem;
-
-  @media (max-width: 1024px) {
-    grid-template-columns: 1fr;
-  }
-
-  @media (max-width: 640px) {
-    gap: 1rem;
-  }
-}
-
-.activity-card,
-.actions-card {
-  background: white;
-  border-radius: 12px;
-  padding: 1.5rem;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
-
-  @media (max-width: 640px) {
-    padding: 1rem;
-  }
-}
-
-.card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1.5rem;
-}
-
-.card-title {
-  font-size: 1.25rem; // Mobile
-  font-weight: 700;
-  color: #1f2933; // neutral-800
-  margin: 0;
-
-  @media (min-width: 1024px) {
-    font-size: 1.5rem; // Desktop
-  }
-}
-
-.activity-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.activity-item {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 0.75rem;
-  border-radius: 8px;
-  transition: background-color 0.2s ease;
-
-  &:hover {
-    background-color: #f9fafb; // neutral-50
-  }
-}
-
-.activity-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.activity-content {
-  flex: 1;
-  min-width: 0;
-}
-
-.activity-title {
-  font-size: 0.9375rem; // Mobile
-  font-weight: 500;
-  color: #1f2933; // neutral-800
-  margin-bottom: 0.25rem;
-
-  @media (min-width: 1024px) {
-    font-size: 1rem; // Desktop
-  }
-}
-
-.activity-time {
-  font-size: 0.8125rem; // Mobile
-  color: #6b7280; // neutral-500
-
-  @media (min-width: 1024px) {
-    font-size: 0.875rem; // Desktop
-  }
-}
-
-.no-activity {
-  text-align: center;
-  padding: 2rem;
-  color: #6b7280; // neutral-500
-  font-size: 0.875rem;
-}
-
-.actions-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
-
-  @media (max-width: 640px) {
-    grid-template-columns: 1fr;
-  }
-}
-
-.action-button {
-  width: 100%;
-  height: auto;
-  padding: 1rem;
-  font-size: 0.9375rem; // Mobile
-  justify-content: flex-start;
-
-  @media (min-width: 1024px) {
-    font-size: 1rem; // Desktop
-  }
-}
 </style>
